@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Justin Essert</title>
 
-	<!-- For Angular Routing -->
-	<base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-	<!-- CSS Stylesheets -->
+    <title>Justin Essert</title>
 
-	<!-- Bootstrap Core CSS -->
-    <link href="assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-	<!-- Custom Fonts -->
-    <link href="assets/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Droid+Sans|Lato|Roboto" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
-	<!-- Custom Stylesheets -->
-	<link href="assets/css/style.css" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link href="css/style.css" rel="stylesheet">
 
-	<!-- JS -->
-	<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-	<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-	<script type='text/javascript' src="assets/libs/angular-scroll/angular-scroll.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="assets/js/nav.js"></script>
-
-	<!-- Controllers -->
-	<script src="app/controllers/mainCtrl.js"></script>
-
-	<!-- Services -->
-
-	<!-- main Angular app files -->
-	<script src="app/app.routes.js"></script>
-
-	<script src="app/app.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
-<body id="page-top" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" data-offset="55" ng-app="myapp" ng-controller="mainController as main" style="margin: 0px">
-	<!-- Navigation -->
-	<nav class="navbar navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<ul class="nav navbar-nav top-nav">
-					<li><a href="#page-top" du-smooth-scroll>Justin Essert</a></li>
-				</ul>
-			</div>
-			<div class="navbar-right">
-				<ul class="nav navbar-nav page-nav">
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <span class="light">Justin</span> Essert
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
 					<li class="hidden">
 						<a class="page-scroll" href="#page-top"></a>
 					</li>
@@ -62,66 +59,71 @@
 						<a class="page-scroll" href="#ed" du-smooth-scroll>Education</a>
 					</li>
 					<li>
-						<a  class="page-scroll" href="#dev" du-smooth-scroll>Development Experience</a>
+						<a  class="page-scroll" href="#dev" du-smooth-scroll>Dev Experience</a>
 					</li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container -->
-	</nav>
+					<li>
+						<a  class="page-scroll" href="#contact" du-smooth-scroll>Contact Me</a>
+					</li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
 
     <!-- Intro Header -->
     <header class="intro">
 		<span class="intro-cover"></span>
-        <div class="intro-body container col-md-8 col-md-offset-2">
-            <h1 style="font-size: 75px;">Justin Essert</h1>
-            <h4 style="font-size: 35px; margin-bottom: 40px">Machine Learning Engineer</h4>
-            <a href="#tech" class="btn-circle" du-smooth-scroll>
-                <i class="fa fa-angle-double-down"></i>
-            </a>
-		</div>
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+						<h1 style="font-size: 75px;">Justin Essert</h1>
+            			<h4 style="font-size: 35px; margin-bottom: 40px">Machine Learning Engineer</h4>
+            			<a href="#tech" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 	<div class="main">
 		<div class="content">
-
-			<!-- Technologies Section -->
-		    <div id="tech" class="content-section">
-				<div class="col-lg-4">
-					<h2>TECHNOLOGIES</h2>
-				</div>
-				<div class="col-lg-8">
-					<div class="col-lg-6">
-						<h4>EXPERIENCED WITH</h4>
-						<ul>
-							<li>Neural Networks</li>
-							<li>K-Means Averaging</li>
-							<li>Object Oriented Design</li>
-							<li>Java</li>
-							<li>C</li>
-							<li>Javascript</li>
-							<li>NodeJS / ExpressJS</li>
-							<li>AngularJS</li>
-							<li>HTML5 / CSS3</li>
-							<li>GIT Version Control</li>
-						</ul>
+		    <!-- Technologies Section -->
+		    <section id="tech" class="container content-section text-center">
+		        <div class="row">
+					<div class="col-lg-4">
+						<h2>LANGUAGES & TECHNOLOGIES</h2>
 					</div>
-					<div class="col-lg-6">
-						<h4>FAMILIAR WITH</h4>
-						<ul>
-							<li>Python</li>
-							<li>jQuery</li>
-							<li>Jade</li>
-							<li>MongoDB</li>
-							<li>SQL / mySQL</li>
-							<li>Relational Database Management System</li>
-						</ul>
+					<div class="col-lg-8">
+						<div class="col-lg-6">
+							<h4>Languages</h4>
+							<ul>
+								<li>Python</li>
+								<li>C</li>
+								<li>Java</li>
+								<li>Javascript (NodeJS/ExpressJS, AngularJS)</li>
+								<li>MongoDB</li>
+								<li>SQL / mySQL</li>
+								<li>HTML5 / CSS3</li>
+							</ul>
+						</div>
+						<div class="col-lg-6">
+							<h4>Technologies</h4>
+							<ul>
+								<li>Agile Project Management</li>
+								<li>GIT Version Control</li>
+								<li>Deep Learning</li>
+							</ul>
+						</div>
 					</div>
-				</div>
-		    </div>
+		        </div>
+		    </section>
 
 			<!-- Work Experience Section -->
-			<div id="work" class="content-section">
+			<section id="work" class="container content-section text-center">
 				<div class="col-lg-4">
 					<h2>WORK EXPERIENCE</h2>
 				</div>
@@ -183,10 +185,10 @@
 						</li>
 					</ul>
 				</div>
-		    </div>
+			</section>
 
 			<!-- Education Section -->
-			<div id="ed" class="content-section">
+			<section id="ed" class="container content-section text-center">
 				<div class="col-lg-4">
 					<h2>EDUCATION</h2>
 				</div>
@@ -198,7 +200,7 @@
 							Currently studying the theory and applications of computer science with a focus in machine learning.
 						</li>
 						<li>
-							Selecting classes that involve pattern recognition, learning, and optimization.
+							Selecting classes that involve pattern recognition, machine learning, and optimization.
 						</li>
 					</ul>
 
@@ -241,21 +243,23 @@
 						</li>
 					</ul>
 				</div>
-		    </div>
+			</section>
 
 			<!-- Development Experience Section -->
-			<div id="dev" class="content-section">
+			<section id="dev" class="container content-section text-center">
 				<div class="col-lg-4">
 					<h2>DEVELOPMENT EXPERIENCE</h2>
 				</div>
 				<div class="col-lg-8">
-					<h4>NEURAL NETWORK RESEARCH</h4>
+					<h4>APPLESAUCE</h4>
+					<h5 class="subtitle">SEAN Stack (SQL, ExpressJS, AngularJS, NodeJS)</h5>
+					<h5 class="subtitle"><a href="https://applesauce.doit.wisc.edu">Website</a> (requires a UW NetID)</h5>
 					<ul class="item">
 						<li>
-							Regularly examine the current literature on neural networks and contemplate their theory and applications.
+							Identified an inefficiency then proposed and implemented a solution that benefits the customer and DoIT.
 						</li>
 						<li>
-							Attend lectures hosted by UW Madison's <a href="http://silo.ece.wisc.edu/">SILO (Systems, Information, Learning and Optimization) Research Group</a> to learn about the most current research in computation and mathematical sciences.
+							Developed a web application that reduces the time spent with a customer from an average of 15 minutes to a predicted average of 5 minutes while still providing the same quality of service.
 						</li>
 					</ul>
 
@@ -268,39 +272,68 @@
 							Engineered an application that analyzes ESPN data and then predicts the outcome of NFL games using machine learning.
 						</li>
 						<li>
-							The application uses a Back-Propagational Neural Network to determine the trends relating to a teams preformance in the recent weeks.
-						</li>
-						<li>
-							The application generally predicted the winning teams for a given week of NFL football with an accuracy of 67-75%.
+							Produced a week-to-week accuracy of 67-75%.
 						</li>
 					</ul>
 
 					<div class="spacer"></div>
 
-					<h4>APPLESAUCE</h4>
-					<h5 class="subtitle">SEAN Stack (SQL, ExpressJS, AngularJS, NodeJS)</h5>
+					<h4>NEURAL NETWORK RESEARCH</h4>
 					<ul class="item">
 						<li>
-							Currently developing a website that creates a more efficient method in which UW-Madison's Help Desk can process computer repairs.
+							Regularly examine the current literature on neural networks and contemplate their theory and applications.
 						</li>
 						<li>
-							The web app creates an environment that helps members of the university quickly diagnose their broken machines, provides them an estimate for repair, and significanty decreases their wait-time when bringing in their machine to get help.
+							Attend lectures hosted by UW Madison's <a href="http://silo.ece.wisc.edu/">SILO (Systems, Information, Learning and Optimization) Research Group</a> to learn about the most current research in computation and mathematical sciences.
 						</li>
 					</ul>
 				</div>
-		    </div>
-		</div>
-	</div>
-	<div id="container">
-		<div class="footer">
-			<div class="col-md-offset-1 col-md-10 row">
-				<h4 class="col-md-4">Email: essert@wisc.edu</h4>
-				<h4 class="col-md-4">Phone: (608) 516-5803</h4>
-				<h4 class="col-md-4">LinkedIn: <a href="http://www.linkedin.com/in/justin-k-essert">Justin K Essert</a></h4>
-			</div>
+			</section>
+
+		    <!-- Contact Section -->
+		    <section id="contact" class="container content-section text-center">
+				<div class="col-lg-4">
+					<h2>CONTACT ME</h2>
+				</div>
+				<div class="col-lg-8">
+	                <p>Feel free to reach out and say hi!</p>
+	                <p>Email: <a href="mailto:justinkessert@gmail.com">justinkessert@gmail.com</a>
+						<br>Phone: (608) 516-5803
+	                </p>
+	                <ul class="list-inline banner-social-buttons">
+	                    <li>
+	                        <a href="https://github.com/JustinEssert/" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+	                    </li>
+	                    <li>
+	                        <a href="linkedin.com/in/justin-k-essert" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+		    </section>
+
+		    <!-- Footer -->
+		    <footer style="padding-bottom: 5px;">
+		        <div class="container text-center">
+		            <p>Copyright &copy; Justin Essert 2017</p>
+		        </div>
+		    </footer>
+
+		    <!-- jQuery -->
+		    <script src="vendor/jquery/jquery.js"></script>
+
+		    <!-- Bootstrap Core JavaScript -->
+		    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+		    <!-- Plugin JavaScript -->
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+		    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+		    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+		    <!-- Theme JavaScript -->
+		    <script src="js/grayscale.min.js"></script>
 		</div>
 	</div>
 </body>
-
 
 </html>
