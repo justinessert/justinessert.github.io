@@ -94,17 +94,17 @@ a:focus {
   background-color: transparent;
 }
 .navbar-custom .nav li a:focus,
-.navbar-custom .nav li a:active {
+.navbar-custom .nav li a:active .current-region {
   outline: none;
   background-color: transparent;
 }
-.navbar-custom .nav li.active {
+.navbar-custom .nav li.active.current-region {
   outline: none;
 }
-.navbar-custom .nav li.active a {
+.navbar-custom .nav li.active.current-region a {
   background-color: rgba(255, 255, 255, 0.3);
 }
-.navbar-custom .nav li.active a:hover {
+.navbar-custom .nav li.active.current-region a:hover {
   color: white;
 }
 .navbar-custom.top-nav-collapse {
@@ -130,6 +130,20 @@ a:focus {
   text-align: center;
   color: white;
   background: url(../img/comp_code.png) no-repeat bottom center scroll;
+  background-color: black;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+.intro-mascot {
+  display: table;
+  width: 100%;
+  height: 100%;
+  padding: 100px 0;
+  text-align: center;
+  color: white;
+  background: url(../mascot/img/basketball.jpeg) no-repeat bottom center scroll;
   background-color: black;
   -webkit-background-size: cover;
   -moz-background-size: cover;

@@ -223,7 +223,8 @@ class Team {
         this.name = name;
         this.nickname = nicknames[name];
         this.seed = seed;
-        this.pretty_name = title(`${this.name} ${this.nickname}`);
+        this.pretty_name = title(`${this.name}`);
+        this.pretty_name_nickname = title(`${this.name} ${this.nickname}`);
         this.display_name = `${this.seed}. ${this.pretty_name}`;
         this.image_path = `${IMAGE_DIRECTORY}${this.name}.jpg`;
     }
@@ -233,7 +234,7 @@ class EffectiveSeed {
     constructor(effective_seed_idx, teams) {
         this.effective_seed_idx = effective_seed_idx;
         this.teams = teams;
-        this.display_name = this.teams.map(team => team.display_name).join(" ");
+        this.display_name = this.teams.map(team => team.display_name).join(" / ");
     }
 }
 
@@ -248,13 +249,13 @@ class MatchupPair {
     display() {
         document.querySelector('.match-container').innerHTML = `
             <div class="image-container" onclick="current_region.selectWinner(0)">
-                <h3>${this.top_team.display_name}</h3>
-                <img src="${this.top_team.image_path}" alt="${this.top_team.display_name}">
+                <h3>${this.top_team.pretty_name_nickname}</h3>
+                <img src="${this.top_team.image_path}" alt="${this.top_team.pretty_name_nickname}">
                 <div class="selection-box" id="selection0"></div>
             </div>
             <div class="image-container" onclick="current_region.selectWinner(1)">
-                <h3>${this.bot_team.display_name}</h3>
-                <img src="${this.bot_team.image_path}" alt="${this.bot_team.display_name}">
+                <h3>${this.bot_team.pretty_name_nickname}</h3>
+                <img src="${this.bot_team.image_path}" alt="${this.bot_team.pretty_name_nickname}">
                 <div class="selection-box" id="selection1"></div>
             </div>
         `;
@@ -392,6 +393,9 @@ class Round {
     }
 
     isComplete() {
+        if (~this.isReady()) {
+            return false;
+        }
         for (key in this.matchups) {
             if (this.matchups[key] === null) {
                 return false;
@@ -432,7 +436,6 @@ class RegionBracket {
     }
 
     selectWinner(idx) {
-        console.log(idx);
         this.rounds[this.current_round_idx].selectWinner(idx);
     }
 
@@ -557,6 +560,22 @@ function updateRegion(region_name) {
     } else {
         final_four_bracket.classList.add("hidden");
         regions_bracket.classList.remove("hidden");
+    }
+
+    var buttons = {
+        "east": document.getElementById('east_button'),
+        "west": document.getElementById('west_button'),
+        "midwest": document.getElementById('midwest_button'),
+        "south": document.getElementById('south_button'),
+        "final_four": document.getElementById('final_four_button'),
+    }
+    for (key in buttons) {
+       let button = buttons[key];
+        if (key == region_name) {
+            button.classList.add("current-region");
+        } else {
+            button.classList.remove("current-region");
+        }
     }
     current_region.setHTML();
     current_region.displayChoice();
