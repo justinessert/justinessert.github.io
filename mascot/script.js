@@ -192,7 +192,7 @@ region_seeds = {
     "west": 4
 }
 
-const IMAGE_DIRECTORY = "https://raw.githubusercontent.com/justinessert/mascot-bracket-constructor/main/imgs/"
+const IMAGE_DIRECTORY = "img/"
 // const IMAGE_DIRECTORY = "../imgs/"
 
 function title(str) {
