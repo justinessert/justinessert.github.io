@@ -424,7 +424,7 @@ class Round {
     }
 
     isComplete() {
-        if (~this.isReady()) {
+        if (!this.isReady()) {
             return false;
         }
         for (key in this.matchups) {
