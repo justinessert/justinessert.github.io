@@ -610,6 +610,9 @@ function updateRegion(region_name) {
     }
     current_region.setHTML();
     current_region.displayChoice();
+
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.remove('show');
 }
 
 current_region = null;
@@ -618,3 +621,12 @@ window.onload = function() {
     initialize();
     updateRegion("east");
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+    const burgerMenu = document.querySelector('.burger-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    burgerMenu.addEventListener('click', function () {
+        navLinks.classList.toggle('show');
+    });
+});

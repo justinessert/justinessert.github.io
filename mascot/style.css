@@ -118,3 +118,48 @@ li.game-bottom{
   font-size: 18px;
   margin-top: 20px;
 }
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.burger-menu {
+  display: none;
+  font-size: 20px;
+  cursor: pointer;
+  align-self: center;
+  margin-left: 40px;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+  }
+  .nav-links.top-nav-collapse {
+    top: 50px;
+  }
+
+  .nav-links.show {
+      display: flex;
+  }
+
+  .nav-links li {
+      margin: 0;
+      text-align: center;
+  }
+
+  .burger-menu {
+      display: block;
+  }
+}
