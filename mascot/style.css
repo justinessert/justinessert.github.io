@@ -70,10 +70,34 @@ li.game-bottom{
 .image-container {
   position: relative;
   cursor: pointer;
+  max-width: 50%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+
 }
 
 .image-container img {
-  height: 400px;
+  max-height: 400px;
+  height: auto;
+  width: auto;
+  border-radius: 8px;
+  margin: 20px;
+}
+
+.mascot-image {
+  position: relative;
+  cursor: pointer;
+  max-width: 90%;
+  overflow: hidden;
+}
+
+.mascot-image img {
+  max-height: 400px;
+  height: auto;
+  width: auto;
   border-radius: 8px;
   margin: 20px;
 }
