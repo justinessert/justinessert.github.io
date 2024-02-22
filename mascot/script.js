@@ -281,12 +281,12 @@ class MatchupPair {
         document.querySelector('.match-container').innerHTML = `
             <div class="image-container" onclick="current_region.selectWinner(0)">
                 <h3 style="margin-left: 20px">${this.top_team.pretty_name_nickname}</h3>
-                <img src="${this.top_team.image_path}" alt="${this.top_team.pretty_name_nickname}">
+                <img class="mascot-image" src="${this.top_team.image_path}" alt="${this.top_team.pretty_name_nickname}">
                 <div class="selection-box" id="selection0"></div>
             </div>
             <div class="image-container" onclick="current_region.selectWinner(1)">
                 <h3 style="margin-left: 20px">${this.bot_team.pretty_name_nickname}</h3>
-                <img src="${this.bot_team.image_path}" alt="${this.bot_team.pretty_name_nickname}">
+                <img class="mascot-image" src="${this.bot_team.image_path}" alt="${this.bot_team.pretty_name_nickname}">
                 <div class="selection-box" id="selection1"></div>
             </div>
         `;
