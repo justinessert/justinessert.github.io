@@ -259,6 +259,13 @@ class Team {
         this.display_name = `${this.seed}. ${this.pretty_name}`;
         this.image_path = `${IMAGE_DIRECTORY}${this.name}.jpg`;
     }
+
+    getHTML() {
+        return `
+            <h3 style="margin-left: 20px">${this.pretty_name_nickname}</h3>
+            <img class="mascot-image" src="${this.image_path}" alt="${this.pretty_name_nickname}">
+        `
+    }
 }
 
 class EffectiveSeed {
@@ -266,6 +273,20 @@ class EffectiveSeed {
         this.effective_seed_idx = effective_seed_idx;
         this.teams = teams;
         this.display_name = this.teams.map(team => team.display_name).join(" / ");
+    }
+    
+    displayFull() {
+        let inner_HTML_list = []
+        for (let i=0; i < this.teams.length; i++) {
+            let team = this.teams[i];
+            let inner_HTML_team = `
+                <div class="image-container">
+                    ${team.getHTML()}
+                </div>
+            `;
+            inner_HTML_list.push(inner_HTML_team);
+        }
+        return inner_HTML_list.join("");
     }
 }
 
@@ -280,13 +301,11 @@ class MatchupPair {
     display() {
         document.querySelector('.match-container').innerHTML = `
             <div class="image-container" onclick="current_region.selectWinner(0)">
-                <h3 style="margin-left: 20px">${this.top_team.pretty_name_nickname}</h3>
-                <img class="mascot-image" src="${this.top_team.image_path}" alt="${this.top_team.pretty_name_nickname}">
+                ${this.top_team.getHTML()}
                 <div class="selection-box" id="selection0"></div>
             </div>
             <div class="image-container" onclick="current_region.selectWinner(1)">
-                <h3 style="margin-left: 20px">${this.bot_team.pretty_name_nickname}</h3>
-                <img class="mascot-image" src="${this.bot_team.image_path}" alt="${this.bot_team.pretty_name_nickname}">
+                ${this.bot_team.getHTML()}
                 <div class="selection-box" id="selection1"></div>
             </div>
         `;
@@ -489,11 +508,34 @@ class RegionBracket {
     }
 
     displayWinner() {
+        let winner_str = "winner";
+        let is_are_str = "is";
+        if (this.region_winner.teams.length > 1) {
+            winner_str = "winners";
+            is_are_str = "are";
+        }
         if (this.region_name == "final_four") {
-            document.querySelector('.match-container').innerHTML = `<h2>Your overall winner is ${this.region_winner.display_name}!</h2>`;
-
+            let message = `
+                <div style="display: block">
+                <h2>Your overall ${winner_str} ${is_are_str}...</h2>
+                <div style="display: flex">${this.region_winner.displayFull()}</div>
+                </div>
+            `;
         } else {
-            document.querySelector('.match-container').innerHTML = `<h2>Your winner of the ${title(this.region_name)} is ${this.region_winner.display_name}!</h2>`;
+            let message = `
+                <div style="display: block">
+                <h2>Your ${winner_str} of the ${title(this.region_name)} ${is_are_str}...</h2>
+                <div style="display: flex">${this.region_winner.displayFull()}</div>
+            `;
+            const screenWidth = window.innerWidth;
+            if (screenWidth < 768) {
+                message += `<div><p>Please complete the following regions by clicking on the &#9776; button in the top left corner of your screen: ${get_remaining_regions()}.</p></div>`;
+              } else {
+                message += `<div><p>Please complete the following regions by clicking on them in the navigation menu on the top of the screen: ${get_remaining_regions()}.</p></div>`;
+              }
+              message += "</div>"
+
+            document.querySelector('.match-container').innerHTML = message;
         }
         // TODO
     }
@@ -558,6 +600,26 @@ brackets = {
     "midwest": new RegionBracket("midwest", 4),
     "south": new RegionBracket("south", 4),
     "final_four": new RegionBracket("final_four", 2),
+}
+
+function get_remaining_regions(){
+    let remaining_regions = []
+    for (let key in brackets) {
+        if (!brackets[key].isComplete()) {
+            console.log(key)
+            console.log(title(key))
+            remaining_regions.push(title(key))
+        }
+    }
+
+    if (remaining_regions.length === 1) {
+        return remaining_regions[0];
+    } else if (remaining_regions.length === 2) {
+        return remaining_regions.join(" and ");
+    } else if (remaining_regions.length > 2){
+        let all_but_last_list = remaining_regions.slice(0, -1);
+        return all_but_last_list.join(", ") + ", and " + remaining_regions[remaining_regions.length-1]
+    }
 }
 
 function initialize_effective_seed(team_names, seed) {
