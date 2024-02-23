@@ -514,30 +514,24 @@ class RegionBracket {
             winner_str = "winners";
             is_are_str = "are";
         }
+        let message = "";
         if (this.region_name == "final_four") {
-            let message = `
+            message = `
                 <div style="display: block">
                 <h2>Your overall ${winner_str} ${is_are_str}...</h2>
                 <div style="display: flex">${this.region_winner.displayFull()}</div>
                 </div>
             `;
         } else {
-            let message = `
+            message = `
                 <div style="display: block">
                 <h2>Your ${winner_str} of the ${title(this.region_name)} ${is_are_str}...</h2>
                 <div style="display: flex">${this.region_winner.displayFull()}</div>
+                ${get_region_instructions()}
+                </div>
             `;
-            const screenWidth = window.innerWidth;
-            if (screenWidth < 768) {
-                message += `<div><p>Please complete the following regions by clicking on the &#9776; button in the top left corner of your screen: ${get_remaining_regions()}.</p></div>`;
-              } else {
-                message += `<div><p>Please complete the following regions by clicking on them in the navigation menu on the top of the screen: ${get_remaining_regions()}.</p></div>`;
-              }
-              message += "</div>"
-
-            document.querySelector('.match-container').innerHTML = message;
         }
-        // TODO
+        document.querySelector('.match-container').innerHTML = message;
     }
 
     isComplete() {
@@ -550,11 +544,20 @@ class RegionBracket {
     }
 
     displayChoice(){
+        var matchup_buttons = document.getElementById('matchup-buttons');
         if (this.isComplete()){
+            matchup_buttons.classList.add("hidden");
             this.displayWinner()
         } else if (!this.rounds[this.current_round_idx].isReady()) {
-            document.querySelector('.match-container').innerHTML = `<h2>Please complete other regions first.</h2>`;
+            matchup_buttons.classList.add("hidden");
+            document.querySelector('.match-container').innerHTML = `
+            <div style="display: block">
+            <h2>Please complete other regions first.</h2>
+            ${get_region_instructions(true)}
+            </div>
+        `;
         } else {
+            matchup_buttons.classList.remove("hidden");
             this.rounds[this.current_round_idx].displayMatchup()
         }
     }
@@ -602,25 +605,6 @@ brackets = {
     "final_four": new RegionBracket("final_four", 2),
 }
 
-function get_remaining_regions(){
-    let remaining_regions = []
-    for (let key in brackets) {
-        if (!brackets[key].isComplete()) {
-            console.log(key)
-            console.log(title(key))
-            remaining_regions.push(title(key))
-        }
-    }
-
-    if (remaining_regions.length === 1) {
-        return remaining_regions[0];
-    } else if (remaining_regions.length === 2) {
-        return remaining_regions.join(" and ");
-    } else if (remaining_regions.length > 2){
-        let all_but_last_list = remaining_regions.slice(0, -1);
-        return all_but_last_list.join(", ") + ", and " + remaining_regions[remaining_regions.length-1]
-    }
-}
 
 function initialize_effective_seed(team_names, seed) {
     if (typeof team_names === 'string') {
@@ -629,6 +613,7 @@ function initialize_effective_seed(team_names, seed) {
     let teams = team_names.map(team_name => new Team(team_name, seed));
     return new EffectiveSeed(seed, teams);
 }
+
 
 function initialize() {
     for (key in bracket_data) {
@@ -641,6 +626,7 @@ function initialize() {
         }
     }
 }
+
 
 function updateRegion(region_name) {
     current_region = brackets[region_name];
@@ -677,7 +663,39 @@ function updateRegion(region_name) {
     navLinks.classList.remove('show');
 }
 
+
+function get_remaining_regions(ignore_current_region=false){
+    let remaining_regions = []
+    for (let key in brackets) {
+        if (!brackets[key].isComplete()) {
+            if (!(ignore_current_region & (current_region.region_name === key))) {
+                remaining_regions.push(title(key))
+            }
+        }
+    }
+
+    if (remaining_regions.length === 1) {
+        return remaining_regions[0];
+    } else if (remaining_regions.length === 2) {
+        return remaining_regions.join(" and ");
+    } else if (remaining_regions.length > 2){
+        let all_but_last_list = remaining_regions.slice(0, -1);
+        return all_but_last_list.join(", ") + ", and " + remaining_regions[remaining_regions.length-1]
+    }
+}
+
+
+function get_region_instructions(ignore_current_region=false){
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+        return `<div><p>Please complete the following region(s) by clicking on the &#9776; button in the top left corner of your screen: ${get_remaining_regions(ignore_current_region)}.</p></div>`;
+    }
+    return `<div><p>Please complete the following region(s) by clicking on them in the navigation menu on the top of the screen: ${get_remaining_regions(ignore_current_region)}.</p></div>`;
+}
+
+
 current_region = null;
+
 
 window.onload = function() {
     initialize();
