@@ -529,9 +529,9 @@ class RegionBracket {
             `;
             const screenWidth = window.innerWidth;
             if (screenWidth < 768) {
-                message += `<div><p>Please complete the following regions by clicking on the &#9776; button in the top left corner of your screen: ${get_remaining_regions()}.</p></div>`;
+                message += `<div><p>Please complete the following region(s) by clicking on the &#9776; button in the top left corner of your screen: ${get_remaining_regions()}.</p></div>`;
               } else {
-                message += `<div><p>Please complete the following regions by clicking on them in the navigation menu on the top of the screen: ${get_remaining_regions()}.</p></div>`;
+                message += `<div><p>Please complete the following region(s) by clicking on them in the navigation menu on the top of the screen: ${get_remaining_regions()}.</p></div>`;
               }
               message += "</div>"
 
@@ -550,11 +550,15 @@ class RegionBracket {
     }
 
     displayChoice(){
+        var matchup_buttons = document.getElementById('matchup-buttons');
         if (this.isComplete()){
+            matchup_buttons.classList.add("hidden");
             this.displayWinner()
         } else if (!this.rounds[this.current_round_idx].isReady()) {
+            matchup_buttons.classList.add("hidden");
             document.querySelector('.match-container').innerHTML = `<h2>Please complete other regions first.</h2>`;
         } else {
+            matchup_buttons.classList.remove("hidden");
             this.rounds[this.current_round_idx].displayMatchup()
         }
     }
