@@ -514,15 +514,16 @@ class RegionBracket {
             winner_str = "winners";
             is_are_str = "are";
         }
+        let message = "";
         if (this.region_name == "final_four") {
-            let message = `
+            message = `
                 <div style="display: block">
                 <h2>Your overall ${winner_str} ${is_are_str}...</h2>
                 <div style="display: flex">${this.region_winner.displayFull()}</div>
                 </div>
             `;
         } else {
-            let message = `
+            message = `
                 <div style="display: block">
                 <h2>Your ${winner_str} of the ${title(this.region_name)} ${is_are_str}...</h2>
                 <div style="display: flex">${this.region_winner.displayFull()}</div>
@@ -534,10 +535,8 @@ class RegionBracket {
                 message += `<div><p>Please complete the following region(s) by clicking on them in the navigation menu on the top of the screen: ${get_remaining_regions()}.</p></div>`;
               }
               message += "</div>"
-
-            document.querySelector('.match-container').innerHTML = message;
         }
-        // TODO
+        document.querySelector('.match-container').innerHTML = message;
     }
 
     isComplete() {
