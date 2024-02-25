@@ -313,8 +313,6 @@ class MatchupPair {
         var alert_box = document.getElementById('multi-matchup-alert');
         if (add_alert) {
             alert_box.classList.remove("hidden");
-        } else {
-            alert_box.classList.add("hidden");
         }
     }
 
@@ -564,6 +562,8 @@ class RegionBracket {
     }
 
     displayChoice(){
+        var alert_box = document.getElementById('multi-matchup-alert');
+        alert_box.classList.add("hidden");
         var matchup_buttons = document.getElementById('matchup-buttons');
         if (this.isComplete()){
             matchup_buttons.classList.add("hidden");
