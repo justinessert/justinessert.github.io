@@ -363,7 +363,7 @@ class Matchup {
 }
 
 class Round {
-    constructor(round_number, num_seeds, prefix="") {
+    constructor(round_number, num_seeds, region_prefix="") {
         this.round_number = round_number;
         this.num_seeds = num_seeds;
         this.seeds = {};
@@ -373,11 +373,12 @@ class Round {
         this.num_matchups = Math.floor(num_seeds / 2);
         this.matchups = []
         this.current_matchup_idx = null;
-        this.prefix = prefix;
+        this.region_prefix = region_prefix;
     }
 
-    updateHTMLBracket(effective_seed_idx) {
-        var dynamicTextSpan = document.getElementById(`${this.prefix}rnd${this.round_number}-eSeed${effective_seed_idx}`);
+    updateHTMLBracket(effective_seed_idx, prefix="") {
+        console.log(`${prefix}${this.region_prefix}rnd${this.round_number}-eSeed${effective_seed_idx}`)
+        var dynamicTextSpan = document.getElementById(`${prefix}${this.region_prefix}rnd${this.round_number}-eSeed${effective_seed_idx}`);
         let effective_seed = this.seeds[effective_seed_idx]
         if (effective_seed == null){
             dynamicTextSpan.textContent = "";
@@ -520,6 +521,11 @@ class RegionBracket {
                 <div style="display: block">
                 <h2>Your overall ${winner_str} ${is_are_str}...</h2>
                 <div style="display: flex">${this.region_winner.displayFull()}</div>
+                <div id="complete-buttons" class="list-inline banner-social-buttons">
+                <li>
+                    <button class="btn btn-default btn-lg" onclick="printContent()"><span class="network-name">Print</span></button>
+                </li>
+                </div>
                 </div>
             `;
         } else {
@@ -562,16 +568,18 @@ class RegionBracket {
         }
     }
 
-    setRegionWinner(winner) {
-        this.region_winner = winner;
-
+    updateHTMLRegionWinner(prefix="") {
         if (this.region_name === "final_four") {
-            var dynamicTextSpan = document.getElementById(`ff-region-winner`);
+            var dynamicTextSpan = document.getElementById(`${prefix}ff-region-winner`);
         } else {
-            var dynamicTextSpan = document.getElementById(`region-winner`);
+            var dynamicTextSpan = document.getElementById(`${prefix}region-winner`);
         }
         dynamicTextSpan.textContent = this.region_winner.display_name;
+    }
 
+    setRegionWinner(winner, prefix="") {
+        this.region_winner = winner;
+        this.updateHTMLRegionWinner(prefix);
         if (this.region_name != "final_four") {
             let effective_seed = new EffectiveSeed(region_seeds[this.region_name], winner.teams);
             brackets["final_four"].addSeed(effective_seed, false)
@@ -663,6 +671,44 @@ function updateRegion(region_name) {
     navLinks.classList.remove('show');
 }
 
+function fill_full_bracket(){
+    for (let region_name in region_seeds) {
+        let region_seed = region_seeds[region_name];
+        const region_seed_name = `region${region_seed}-`
+        let region = brackets[region_name];
+
+        for (let i = 1; i <= region.num_rounds; i++) {
+            let round = region.rounds[i];
+            for (let effective_seed_idx in round.seeds) {
+                round.updateHTMLBracket(effective_seed_idx, region_seed_name);
+            }
+        }
+
+        if (region.region_winner != null) {
+            region.updateHTMLRegionWinner(region_seed_name)
+        }
+    }
+    let region = brackets["final_four"];
+    for (let i = 1; i <= region.num_rounds; i++) {
+        let round = region.rounds[i];
+        for (let effective_seed_idx in round.seeds) {
+            round.updateHTMLBracket(effective_seed_idx, "full-");
+        }
+    }
+    if (region.region_winner != null) {
+        let message = `<div style="display: flex">${region.region_winner.displayFull()}</div>`;
+        document.querySelector('.champion-container').innerHTML = message;
+    }
+}
+
+function printContent() {
+    var full_bracket = document.getElementById('full-bracket');
+    full_bracket.classList.remove("hidden");
+    fill_full_bracket();
+    window.print();
+    full_bracket.classList.add("hidden");
+}
+
 
 function get_remaining_regions(ignore_current_region=false){
     let remaining_regions = []
@@ -691,6 +737,18 @@ function get_region_instructions(ignore_current_region=false){
         return `<div><p>Please complete the following region(s) by clicking on the &#9776; button in the top left corner of your screen: ${get_remaining_regions(ignore_current_region)}.</p></div>`;
     }
     return `<div><p>Please complete the following region(s) by clicking on them in the navigation menu on the top of the screen: ${get_remaining_regions(ignore_current_region)}.</p></div>`;
+}
+
+function autoFillBracket() {
+    for (let region_name in brackets) {
+        let region = brackets[region_name];
+        updateRegion(region_name);
+        while (!region.isComplete()) {
+            region.selectWinner(0);
+            region.submitChoice();
+        }
+
+    }
 }
 
 
