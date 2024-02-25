@@ -1,53 +1,39 @@
-/*
- *  Flex Layout Specifics
-*/
-main{
-  display:flex;
-  flex-direction:row;
-}
-.hidden {
-  display: none;
-}
-.round{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  width:200px;
-  list-style:none;
-  padding:0;
-}
-  .round .spacer{ flex-grow:1; }
-  .round .spacer:first-child,
-  .round .spacer:last-child{ flex-grow:.5; }
-
-  .round .game-spacer{
-    flex-grow:1;
+@media print {
+  /* Define print styles */
+  .ignore-print .ignore-print * {
+      display: none;
+  }
+  #matchup {
+    border-bottom: 0px;
+  }
+  #bracket {
+    border-bottom: 0px;
+  }
+  #more {
+    border-bottom: 0px;
   }
 
-/*
-  *  General Styles
-*/
-li.game{
-  padding-left:20px;
-}
+  #bracket-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  #full-bracket {
+      position: absolute;
+      left: 0;
+      top: 0; 
+      transform: scale(0.5);
+      transform-origin: top left;
+      border-bottom: 0px;
+  }
+  .regions_bracket {
+    height: 100%;
+    width: 100;
+  }
+  .image-container {
+    max-width: 80%;
+  }
 
-li.game.winner{
-  font-weight:bold;
-}
-li.game span{
-  float:left;
-  margin-left:5px;
-}
-
-li.game-top{ border-bottom:1px solid #aaa; }
-
-li.game-spacer{ 
-  border-right:1px solid #aaa;
-  min-height:40px;
-}
-
-li.game-bottom{ 
-  border-top:1px solid #aaa;
 }
 
 #tournament-container {
@@ -65,6 +51,14 @@ li.game-bottom{
   justify-content: space-between;
   max-width: 90%;
   margin-bottom: 20px;
+}
+
+.champion-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 90%;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .image-container {
