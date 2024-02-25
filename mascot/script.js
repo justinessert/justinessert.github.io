@@ -298,7 +298,7 @@ class MatchupPair {
         this.current_selection = null;
     }
     
-    display() {
+    display(add_alert=false) {
         document.querySelector('.match-container').innerHTML = `
             <div class="image-container" onclick="current_region.selectWinner(0)">
                 ${this.top_team.getHTML()}
@@ -309,6 +309,13 @@ class MatchupPair {
                 <div class="selection-box" id="selection1"></div>
             </div>
         `;
+
+        var alert_box = document.getElementById('multi-matchup-alert');
+        if (add_alert) {
+            alert_box.classList.remove("hidden");
+        } else {
+            alert_box.classList.add("hidden");
+        }
     }
 
     selectWinner(idx) {
@@ -338,7 +345,8 @@ class Matchup {
     }
 
     displayMatchupPair() {
-        this.possible_matchup_pairs[this.current_matchup_pair_idx].display();
+        let add_alert = (this.possible_matchup_pairs.length > 1)
+        this.possible_matchup_pairs[this.current_matchup_pair_idx].display(add_alert);
     }
 
     submitMatchupPair() {

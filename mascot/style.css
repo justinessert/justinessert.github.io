@@ -130,6 +130,15 @@
   margin-left: 40px;
 }
 
+.alert-details {
+  font-size: 12px;
+}
+
+.alert-box {
+  width: 100%;
+  margin-top: 20px;
+}
+
 @media only screen and (max-width: 768px) {
   .nav-links {
       display: none;
