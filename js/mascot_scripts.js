@@ -223,7 +223,7 @@ region_seeds = {
     "west": 4
 }
 
-const IMAGE_DIRECTORY = "img/"
+const IMAGE_DIRECTORY = "../img/mascot/"
 // const IMAGE_DIRECTORY = "../imgs/"
 
 function title(str) {
