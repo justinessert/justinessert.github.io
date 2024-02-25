@@ -516,7 +516,13 @@ class RegionBracket {
         }
     }
 
+    updateNav() {
+        var nav_button = document.querySelector(`.${this.region_name}-nav`);
+        nav_button.innerHTML = `${title(this.region_name)}<i class="fa fa-check fa-fw"></i>`
+    }
+
     displayWinner() {
+        this.updateNav();
         let winner_str = "winner";
         let is_are_str = "is";
         if (this.region_winner.teams.length > 1) {
