@@ -2,7 +2,7 @@
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-for file in mascot/img/*
+for file in img/mascot/*
 do
     if [ -f "$file" ]; then
         echo "git add $file"
