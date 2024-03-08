@@ -4,7 +4,7 @@ import math
 import os
 from PIL import Image
 
-image_path = "mascot/img/"
+image_path = "img/mascot/"
 
 wrong_ratio = []
 too_small = []
