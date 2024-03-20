@@ -602,7 +602,11 @@ class RegionBracket {
         } else {
             var dynamicTextSpan = document.getElementById(`${prefix}region-winner`);
         }
-        dynamicTextSpan.textContent = this.region_winner.display_name;
+        if (region.region_winner != null) {
+            dynamicTextSpan.textContent = this.region_winner.display_name;
+        } else {
+            dynamicTextSpan.textContent = "";
+        }
     }
 
     setRegionWinner(winner, prefix="") {
@@ -711,10 +715,7 @@ function fill_full_bracket(){
                 round.updateHTMLBracket(effective_seed_idx, region_seed_name);
             }
         }
-
-        if (region.region_winner != null) {
-            region.updateHTMLRegionWinner(region_seed_name)
-        }
+        region.updateHTMLRegionWinner(region_seed_name);
     }
     let region = brackets["final_four"];
     for (let i = 1; i <= region.num_rounds; i++) {
