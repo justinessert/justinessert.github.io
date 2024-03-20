@@ -504,6 +504,7 @@ class RegionBracket {
         for (key in this.rounds) {
             this.rounds[key].setHTML();
         }
+        this.updateHTMLRegionWinner();
     }
 
     selectWinner(idx) {
