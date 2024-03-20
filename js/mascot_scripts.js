@@ -602,7 +602,7 @@ class RegionBracket {
         } else {
             var dynamicTextSpan = document.getElementById(`${prefix}region-winner`);
         }
-        if (region.region_winner != null) {
+        if (this.region_winner != null) {
             dynamicTextSpan.textContent = this.region_winner.display_name;
         } else {
             dynamicTextSpan.textContent = "";
